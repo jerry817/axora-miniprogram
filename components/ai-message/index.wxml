@@ -1,0 +1,34 @@
+<view class="message {{role}}">
+  <!-- 用户头像保留文字【我】，A替换为图片 -->
+  <view class="avatar">
+    <block wx:if="{{role=='user'}}">我</block>
+    <image 
+      wx:else 
+      class="ai-avatar-img" 
+      src="/assets/images/logo.jpg" 
+      mode="aspectFit"
+    ></image>
+  </view>
+  <view class="bubble">
+    <block wx:for="{{segments}}" wx:key="index" wx:for-item="seg">
+      <rich-text
+        wx:if="{{seg.type === 'text'}}"
+        class="md-text"
+        nodes="{{seg.html}}"
+      ></rich-text>
+      <view wx:else class="code-block">
+        <view class="code-header">
+          <text class="code-lang">{{seg.lang}}</text>
+          <text
+            class="code-copy"
+            data-content="{{seg.content}}"
+            bindtap="copyCode"
+          >复制</text>
+        </view>
+        <scroll-view class="code-body" scroll-x="true">
+          <text class="code-text">{{seg.content}}</text>
+        </scroll-view>
+      </view>
+    </block>
+  </view>
+</view>

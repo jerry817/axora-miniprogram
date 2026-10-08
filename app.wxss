@@ -1,0 +1,23 @@
+@import "./styles/theme.wxss";
+
+page {
+  /* Real on-screen footprint of the floating glass custom-tab-bar.
+     Since tabBar.custom = true, the client does NOT auto-reserve this
+     space the way it does for the native tab bar, so every scrollable
+     page must add it back manually (see pages that pad/size against it). */
+  --tabbar-height: calc(132rpx + env(safe-area-inset-bottom));
+
+  background: #f5f7fb;
+  color: #1f2937;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+}
+
+view,
+text {
+  box-sizing: border-box;
+}

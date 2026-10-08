@@ -1,0 +1,85 @@
+<view class="page">
+
+<!-- 顶部区域 -->
+<view class="header">
+  <view class="brand">Axora Space</view>
+  <view class="welcome">你好，欢迎使用文本辅助工具 👋</view>
+  <view class="tip">今天想让 Axora 帮你完成什么？</view>
+</view>
+
+<!-- AI 主入口 -->
+<view class="main-card" hover-class="card-active" bindtap="goChat">
+  <image class="main-logo" src="/assets/images/logo.png" mode="aspectFit"></image>
+  <view class="main-info">
+    <view class="main-title">Axora对话问答</view>
+    <view class="main-desc">支持问答、写作、代码辅助</view>
+  </view>
+</view>
+
+<!-- Inspiration marquee -->
+<view class="quote-marquee">
+  <view id="quoteMarqueeViewport" class="quote-marquee__viewport">
+    <view
+      class="quote-marquee__track {{marqueeShouldScroll ? 'quote-marquee__track--scrolling' : 'quote-marquee__track--static'}}"
+      style="animation-duration: {{marqueeDuration}};"
+    >
+      <view id="quoteMarqueeContent" class="quote-marquee__group">
+        <text class="quote-marquee__text">“{{currentQuote}}”</text>
+      </view>
+      <view wx:if="{{marqueeShouldScroll}}" class="quote-marquee__group">
+        <text class="quote-marquee__text">“{{currentQuote}}”</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 工具 -->
+<view class="section-title">常用工具</view>
+
+<view class="grid">
+  <view class="tool-card" hover-class="card-active" data-type="writer" bindtap="goTool">
+    <view class="tool-icon">✍️</view>
+    <view>辅助写作</view>
+  </view>
+
+  <view class="tool-card" hover-class="card-active" data-type="translator" bindtap="goTool">
+    <view class="tool-icon">🌍</view>
+    <view>文本翻译</view>
+  </view>
+
+  <view class="tool-card" hover-class="card-active" data-type="summary" bindtap="goTool">
+    <view class="tool-icon">📄</view>
+    <view>文档总结</view>
+  </view>
+
+  <view class="tool-card" hover-class="card-active" data-type="ocr" bindtap="goTool">
+    <view class="tool-icon">📷</view>
+    <view>OCR识别</view>
+  </view>
+</view>
+
+<!-- AI 建议 -->
+<view class="section-header">
+  <view class="section-title">对话建议</view>
+  <view class="refresh-btn" hover-class="card-active" bindtap="refreshSuggestions">
+    <text>换一换</text>
+    <text class="refresh-icon">↻</text>
+  </view>
+</view>
+
+<view class="suggestion-list">
+  <view
+    wx:for="{{suggestionList}}"
+    wx:key="text"
+    class="suggestion-item"
+    hover-class="card-active"
+    data-text="{{item.text}}"
+    bindtap="openSuggestion"
+  >
+    <view class="suggestion-icon">{{item.icon}}</view>
+    <text class="suggestion-text">{{item.text}}</text>
+    <text class="suggestion-arrow">›</text>
+  </view>
+</view>
+
+</view>

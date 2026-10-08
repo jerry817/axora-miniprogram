@@ -1,0 +1,126 @@
+.message {
+  display: flex;
+  margin: 24rpx 0;
+  align-items: flex-start;
+}
+/* 精准匹配根view同时带message+user类 */
+.message.user {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  background: #1677ff;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  font-size: 24rpx;
+}
+/* A头像灰色区分，避免全部蓝色分不清 */
+.message:not(.user) .avatar {
+  background: #e5e7eb;
+  color: #333;
+}
+
+.bubble {
+  max-width: 560rpx;
+  padding: 20rpx 24rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  margin: 0 20rpx;
+  line-height: 1.7;
+  word-break: break-word;
+  overflow: hidden;
+}
+.message.user .bubble {
+  background: #1677ff;
+  color: white;
+}
+
+/* ---- Markdown 文本样式 ---- */
+.md-text {
+  font-size: 28rpx;
+}
+
+.bubble .md-p {
+  margin: 0 0 8rpx;
+}
+.bubble .md-p:last-child {
+  margin-bottom: 0;
+}
+
+.bubble .md-heading {
+  margin: 12rpx 0 8rpx;
+  font-weight: 700;
+}
+
+.bubble .md-list {
+  margin: 0 0 8rpx;
+  padding-left: 32rpx;
+}
+
+.bubble .inline-code {
+  background: rgba(0, 0, 0, 0.06);
+  color: #d6336c;
+  padding: 2rpx 8rpx;
+  border-radius: 6rpx;
+  font-family: monospace;
+  font-size: 26rpx;
+}
+.message.user .bubble .inline-code {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* ---- 代码块样式 ---- */
+.code-block {
+  margin: 12rpx 0;
+  background: #1e1e2e;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.bubble .code-block:first-child {
+  margin-top: 0;
+}
+.bubble .code-block:last-child {
+  margin-bottom: 0;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.code-lang {
+  color: #9aa0b4;
+  font-size: 22rpx;
+  text-transform: uppercase;
+}
+
+.code-copy {
+  color: #7dd3fc;
+  font-size: 22rpx;
+}
+
+.code-body {
+  width: 100%;
+  padding: 16rpx 20rpx;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.code-text {
+  color: #e5e7eb;
+  font-family: monospace;
+  font-size: 24rpx;
+  line-height: 1.6;
+  white-space: pre;
+}

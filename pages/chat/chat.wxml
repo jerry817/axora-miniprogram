@@ -1,0 +1,43 @@
+<view class="chat-page">
+  <!-- 新对话悬浮图标（独立固定定位，不占用布局） -->
+  <view
+    class="new-chat-fab {{loading ? 'new-chat-fab--disabled' : ''}}"
+    hover-class="{{loading ? '' : 'new-chat-fab--hover'}}"
+    hover-stay-time="80"
+    aria-role="button"
+    aria-label="新对话"
+    bind:tap="startNewChat"
+  >
+    <text class="new-chat-fab-icon">＋</text>
+  </view>
+
+  <!-- 消息区域 -->
+  <scroll-view
+    class="message-list"
+    scroll-y="true"
+    scroll-top="{{scrollTop}}"
+    scroll-with-animation="true"
+  >
+    <ai-message
+      wx:for="{{messages}}"
+      wx:key="index"
+      role="{{item.role}}"
+      content="{{item.content}}"
+    />
+    <view wx:if="{{loading}}" class="typing-indicator">
+      <view class="typing-dot"></view>
+      <view class="typing-dot"></view>
+      <view class="typing-dot"></view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <ai-input
+      value="{{inputText}}"
+      disabled="{{loading}}"
+      bind:change="onInput"
+      bind:send="sendMessage"
+    />
+  </view>
+</view>

@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/chat/chat",
+    "pages/tools/tools",
+    "pages/history/history",
+    "pages/mine/mine"
+  ],
+  "usingComponents": {
+    "ai-message": "/components/ai-message/index",
+    "ai-input": "/components/ai-input/index"
+  },
+
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#1677ff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index"
+      },
+      {
+        "pagePath": "pages/chat/chat"
+      },
+      {
+        "pagePath": "pages/tools/tools"
+      },
+      {
+        "pagePath": "pages/history/history"
+      },
+      {
+        "pagePath": "pages/mine/mine"
+      }
+    ]
+  }
+}

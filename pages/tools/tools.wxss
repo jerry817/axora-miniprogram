@@ -1,0 +1,276 @@
+.tools-page{
+  padding:30rpx;
+  padding-bottom:calc(60rpx + var(--tabbar-height));
+}
+
+.tab-bar{
+  display:flex;
+  gap:16rpx;
+  margin-bottom:30rpx;
+}
+
+.tab-item{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  height:120rpx;
+  background:#fff;
+  border-radius:20rpx;
+  color:#666;
+  font-size:26rpx;
+  box-shadow:0 8rpx 24rpx rgba(0,0,0,.04);
+}
+
+.tab-icon{
+  font-size:36rpx;
+  margin-bottom:8rpx;
+}
+
+.tab-item--active{
+  background:#1677ff;
+  color:#fff;
+  box-shadow:0 8rpx 24rpx rgba(22,119,255,.25);
+}
+
+.tool-body{
+  background:#fff;
+  border-radius:24rpx;
+  padding:30rpx;
+  box-shadow:0 10rpx 30rpx rgba(0,0,0,.05);
+}
+
+.tool-textarea{
+  width:100%;
+  min-height:220rpx;
+  font-size:28rpx;
+  line-height:1.6;
+  box-sizing:border-box;
+}
+
+.tool-actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:20rpx;
+  padding-top:20rpx;
+  border-top:1rpx solid #f0f0f0;
+}
+
+.char-count{
+  font-size:24rpx;
+  color:#999;
+}
+
+.generate-btn{
+  min-width:220rpx;
+  height:72rpx;
+  line-height:72rpx;
+  padding:0 32rpx;
+  background:#1677ff;
+  color:#fff;
+  border-radius:99rpx;
+  font-size:28rpx;
+}
+
+.generate-btn::after{
+  border:none;
+}
+
+.result-card{
+  margin-top:30rpx;
+  padding-top:20rpx;
+  border-top:1rpx dashed #eee;
+}
+
+.result-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10rpx;
+}
+
+.result-title{
+  font-size:28rpx;
+  font-weight:700;
+  color:#333;
+}
+
+.result-copy{
+  font-size:24rpx;
+  color:#1677ff;
+}
+
+/* 翻译器专用样式 */
+.translator-container {
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0,0,0,.05);
+  overflow: hidden;
+}
+
+.lang-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.lang-picker {
+  flex: 1;
+}
+
+.lang-picker-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 24rpx;
+  background: #f5f5f5;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker-arrow {
+  font-size: 22rpx;
+  color: #999;
+  margin-left: 8rpx;
+}
+
+.swap-btn {
+  width: 72rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20rpx;
+  background: #1677ff;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.swap-icon {
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.translate-content {
+  display: flex;
+  min-height: 500rpx;
+}
+
+.translate-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24rpx;
+  box-sizing: border-box;
+  position: relative; /* 【新增】为自定义占位符提供绝对定位参考点 */
+}
+
+.source-panel {
+  border-right: 1rpx solid #f0f0f0;
+  background: #fff;
+}
+
+.target-panel {
+  background: #fafafa;
+}
+
+.translate-textarea {
+  flex: 1;
+  width: 100%;
+  font-size: 36rpx;
+  line-height: 1.5;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.result-text {
+  flex: 1;
+  font-size: 36rpx;
+  line-height: 1.5;
+  color: #333;
+  word-break: break-all;
+  padding: 0; 
+  margin: 0;
+}
+
+/* 【修改】废弃旧的 placeholder-text，替换为统一的自定义占位符 */
+.custom-placeholder {
+  position: absolute;
+  top: 24rpx;  /* 对应父容器 padding 24rpx */
+  left: 24rpx; /* 对应父容器 padding 24rpx */
+  font-size: 36rpx;
+  line-height: 1.5;
+  color: #ccc;
+  pointer-events: none; /* 让点击穿透至文本框 */
+}
+
+.translating-tip {
+  flex: 1;
+  font-size: 28rpx;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-footer {
+  height: 70rpx; /* 【修改】使用固定高度代替 min-height，确保左右细线高度齐平 */
+  box-sizing: border-box; /* 【修改】高度包含 padding，防止被内容物撑开 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16rpx;
+  margin-top: auto; /* 【修改】利用 flex auto 强制将工具栏吸附到面板最底部 */
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.tone-picker {
+  width: 160rpx;
+}
+
+.tone-picker-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8rpx 16rpx;
+  background: #fff;
+  border: 1rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 24rpx;
+  color: #666;
+}
+
+.copy-btn {
+  font-size: 24rpx;
+  color: #1677ff;
+}
+
+.translate-btn-wrap {
+  padding: 24rpx 30rpx 30rpx;
+}
+
+.translate-btn {
+  width: 100%;
+  height: 88rpx;
+  background: #1677ff;
+  color: #fff;
+  border-radius: 99rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.translate-btn::after {
+  border: none;
+}

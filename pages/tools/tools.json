@@ -1,0 +1,16 @@
+{
+  "navigationBarTitleText": "工具",
+  "navigationBarBackgroundColor": "#F8FAFC",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#F4F7FB",
+  "backgroundTextStyle": "dark",
+  "navigationBarShadow": {
+    "color": "#D8E0EB",
+    "opacity": 0.28,
+    "offsetX": 0,
+    "offsetY": 1
+  },
+  "usingComponents": {
+    "ai-message": "/components/ai-message/index"
+  }
+}

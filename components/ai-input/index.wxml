@@ -1,0 +1,17 @@
+<view class="input-wrap">
+  <textarea
+    class="input-wrap__input"
+    value="{{value}}"
+    placeholder="问问 Axora..."
+    auto-height
+    maxlength="-1"
+    disabled="{{disabled}}"
+    bindinput="onInput"
+  />
+  <button
+    class="input-wrap__button {{disabled || !value ? 'input-wrap__button--disabled' : ''}}"
+    bindtap="send"
+  >
+    <image class="input-wrap__send-icon" src="/assets/icons/send.svg" mode="aspectFit"></image>
+  </button>
+</view>

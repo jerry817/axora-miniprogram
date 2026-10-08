@@ -1,0 +1,9 @@
+/* page 的 background-color / color 由 app.wxss 统一定义并覆盖，这里只保留未被覆盖的 font-size */
+page {
+  font-size: 28rpx;
+}
+/* 描述 */
+.desc {
+  font-size: 26rpx;
+  color:#6b7280;
+}

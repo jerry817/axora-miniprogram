@@ -1,0 +1,122 @@
+<view class="mine-page">
+  <view class="profile-card">
+    <image
+      class="avatar"
+      src="{{isLoggedIn ? userInfo.avatarUrl : '/assets/images/logo.jpg'}}"
+      mode="aspectFill"
+      bindtap="onLoginTap"
+    ></image>
+    <view class="profile-info" bindtap="onLoginTap">
+      <view class="nickname">{{isLoggedIn ? userInfo.nickName : appName}}</view>
+      <view class="desc" wx:if="{{isLoggedIn}}">THIS IS JUST THE BEGINNING.</view>
+      <view class="login-tip" wx:else>点击登录，设置头像与昵称</view>
+    </view>
+    <view class="login-btn" wx:if="{{!isLoggedIn}}" bindtap="onLoginTap">
+      <text>微信登录</text>
+    </view>
+  </view>
+
+  <view class="menu-list">
+    <view class="menu-item" wx:if="{{isLoggedIn}}" bindtap="onCopyUserId">
+      <text>用户 ID</text>
+      <text class="user-id">点击复制</text>
+    </view>
+    <view class="menu-item" bindtap="onFeedback">
+      <text>意见反馈</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onVersionHistory">
+      <text>版本说明</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onAbout">
+      <text>关于 {{appName}}</text>
+      <text class="arrow">›</text>
+    </view>
+    <view class="menu-item menu-item--danger" wx:if="{{isLoggedIn}}" bindtap="onLogout">
+      <text>退出登录</text>
+      <text class="arrow">›</text>
+    </view>
+  </view>
+
+  <view class="version-text">当前版本 v{{version}}</view>
+</view>
+
+<!-- 用户主动选择头像并填写昵称，符合当前微信用户信息规则 -->
+<view wx:if="{{showLoginModal}}" class="modal-mask">
+  <view class="modal-card login-modal">
+    <view class="modal-title">完善展示信息</view>
+    <view class="login-modal-tip">用户 ID 将用于核验白名单资格</view>
+    <button class="avatar-choice" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image class="avatar-choice-image" src="{{selectedAvatarUrl || '/assets/images/logo.png'}}" mode="aspectFill"></image>
+      <text>选择头像</text>
+    </button>
+    <input class="nickname-input" type="nickname" value="{{nicknameInput}}" placeholder="请输入昵称" maxlength="24" bindinput="onNicknameInput" />
+    <view class="modal-actions">
+      <view class="modal-btn modal-btn--ghost" bindtap="closeLoginModal">取消</view>
+      <view class="modal-btn modal-btn--primary" bindtap="doWeChatLogin">确认登录</view>
+    </view>
+  </view>
+</view>
+
+<!-- 隐私协议弹窗 -->
+<view wx:if="{{showPrivacyModal}}" class="modal-mask">
+  <view class="modal-card">
+    <view class="modal-title">用户隐私协议</view>
+    <scroll-view class="modal-body" scroll-y="true">
+      <view class="modal-paragraph" wx:for="{{privacyParagraphs}}" wx:key="*this">{{item}}</view>
+    </scroll-view>
+    <view class="modal-actions">
+      <view class="modal-btn modal-btn--ghost" bindtap="onPrivacyCancel">不同意</view>
+      <view class="modal-btn modal-btn--primary" bindtap="onAgreePrivacyAndLogin">同意并登录</view>
+    </view>
+  </view>
+</view>
+
+<!-- 版本说明弹窗 -->
+<view wx:if="{{showVersionModal}}" class="modal-mask">
+  <view class="modal-card">
+    <view class="modal-title">版本说明</view>
+    <scroll-view class="modal-body" scroll-y="true">
+      <view class="version-block" wx:for="{{versionHistory}}" wx:key="version">
+        <view class="version-heading">
+          <text>{{item.version}}</text>
+          <text class="version-tag" wx:if="{{item.tag}}">{{item.tag}}</text>
+        </view>
+        <view class="version-line" wx:for="{{item.notes}}" wx:for-item="note" wx:key="*this">· {{note}}</view>
+      </view>
+    </scroll-view>
+    <view class="modal-btn modal-btn--primary modal-btn--full" bindtap="closeVersionModal">我知道了</view>
+  </view>
+</view>
+
+<!-- 意见反馈弹窗 -->
+<view wx:if="{{showFeedbackModal}}" class="modal-mask">
+  <view class="modal-card">
+    <view class="modal-title">意见反馈</view>
+    <view class="modal-body">
+      <view class="modal-paragraph" style="text-align:center">请联系开发者：Jerry-817_</view>
+    </view>
+    <view class="modal-btn modal-btn--primary modal-btn--full" bindtap="closeFeedbackModal">我知道了</view>
+  </view>
+</view>
+
+<!-- 关于弹窗 -->
+<view wx:if="{{showAboutModal}}" class="modal-mask">
+  <view class="modal-card">
+    <view class="modal-title">关于{{appName}}</view>
+    <view class="modal-body">
+      <view class="modal-paragraph" style="text-align:center">嘛咪贝贝哄</view>
+    </view>
+    <view class="modal-btn modal-btn--primary modal-btn--full" bindtap="closeAboutModal">我知道了</view>
+  </view>
+</view>
+
+<!-- 彩蛋弹窗 -->
+<view wx:if="{{showEasterModal}}" class="easter-mask" bindtap="closeEasterModal">
+  <image 
+    class="easter-img" 
+    src="/assets/images/egg.jpg" 
+    mode="aspectFit"
+  ></image>
+</view>

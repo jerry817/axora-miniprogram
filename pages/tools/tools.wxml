@@ -1,0 +1,122 @@
+<view class="tools-page">
+  <!-- 工具切换 -->
+  <view class="tab-bar">
+    <view
+      wx:for="{{tabs}}"
+      wx:key="type"
+      class="tab-item {{activeType===item.type ? 'tab-item--active' : ''}}"
+      data-type="{{item.type}}"
+      bindtap="onTabChange"
+    >
+      <text class="tab-icon">{{item.icon}}</text>
+      <text>{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 翻译专用布局 -->
+  <view wx:if="{{activeType === 'translator'}}" class="translator-container">
+    <!-- 语言选择栏 -->
+    <view class="lang-selector">
+      <picker class="lang-picker" mode="selector" range="{{languages}}" value="{{sourceLangIndex}}" bindchange="onSourceLangChange">
+        <view class="lang-picker-box">
+          <text>{{languages[sourceLangIndex]}}</text>
+          <text class="picker-arrow">▾</text>
+        </view>
+      </picker>
+      
+      <view class="swap-btn" bindtap="swapLanguages">
+        <text class="swap-icon">⇄</text>
+      </view>
+      
+      <picker class="lang-picker" mode="selector" range="{{languages}}" value="{{targetLangIndex}}" bindchange="onTargetLangChange">
+        <view class="lang-picker-box">
+          <text>{{languages[targetLangIndex]}}</text>
+          <text class="picker-arrow">▾</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 翻译内容区 -->
+    <view class="translate-content">
+      <!-- 左侧输入区 -->
+      <view class="translate-panel source-panel">
+        <textarea
+          class="translate-textarea"
+          value="{{inputText}}"
+          bindinput="onInput"
+          maxlength="-1"
+          auto-height
+          bindblur="onTranslate"
+        ></textarea>
+        <!-- 【修改】自定义的左侧占位符，去除 textarea 自带的 placeholder -->
+        <view wx:if="{{!inputText}}" class="custom-placeholder">输入文本</view>
+
+        <view class="panel-footer">
+          <text class="char-count">{{inputText.length}} 字</text>
+        </view>
+      </view>
+
+      <!-- 右侧结果区 -->
+      <view class="translate-panel target-panel">
+        <view wx:if="{{loading}}" class="translating-tip">翻译中...</view>
+        <view wx:elif="{{resultText}}" class="result-text">{{resultText}}</view>
+        <!-- 【修改】统一使用自定义占位符样式 -->
+        <view wx:else class="custom-placeholder">翻译</view>
+        
+        <view class="panel-footer">
+          <picker class="tone-picker" mode="selector" range="{{tones}}" value="{{toneIndex}}" bindchange="onToneChange">
+            <view class="tone-picker-box">
+              <text>{{tones[toneIndex]}}</text>
+              <text class="picker-arrow">▾</text>
+            </view>
+          </picker>
+          <text wx:if="{{resultText}}" class="copy-btn" bindtap="onCopyResult">复制</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 翻译按钮 -->
+    <view class="translate-btn-wrap">
+      <button
+        class="translate-btn"
+        bindtap="onTranslate"
+        loading="{{loading}}"
+        disabled="{{loading || !inputText}}"
+      >
+        {{loading ? '翻译中...' : '立即翻译'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 其他工具通用布局 -->
+  <view wx:else class="tool-body">
+    <textarea
+      class="tool-textarea"
+      placeholder="{{activeTab.placeholder}}"
+      value="{{inputText}}"
+      bindinput="onInput"
+      maxlength="-1"
+      auto-height
+    ></textarea>
+
+    <view class="tool-actions">
+      <text class="char-count">{{inputText.length}} 字</text>
+      <button
+        class="generate-btn"
+        bindtap="onGenerate"
+        loading="{{loading}}"
+        disabled="{{loading || !inputText}}"
+      >
+        {{loading ? '生成中...' : 'START'}}
+      </button>
+    </view>
+
+    <view wx:if="{{resultText}}" class="result-card">
+      <view class="result-header">
+        <text class="result-title">生成结果</text>
+        <text class="result-copy" bindtap="onCopyResult">复制</text>
+      </view>
+      <ai-message role="assistant" content="{{resultText}}" />
+    </view>
+  </view>
+</view>

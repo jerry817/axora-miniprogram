@@ -1,0 +1,14 @@
+<view class="glass-tabbar">
+  <view class="glass-surface">
+    <view class="active-pill" style="transform: translateX({{selected * 100 + '%'}});"></view>
+    <view
+      wx:for="{{list}}"
+      wx:key="pagePath"
+      class="tab-item"
+      data-index="{{index}}"
+      bindtap="onChange"
+    >
+      <image class="tab-icon" src="{{selected === index ? item.activeIcon : item.icon}}" mode="aspectFit"></image>
+    </view>
+  </view>
+</view>

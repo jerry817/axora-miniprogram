@@ -1,0 +1,37 @@
+<view class="history-page">
+  <view class="header-bar" wx:if="{{!isEmpty}}">
+    <text class="count-text">共 {{list.length}} 条记录</text>
+    <text class="clear-btn" bindtap="onClearAll">清空</text>
+  </view>
+
+  <view wx:if="{{isEmpty}}" class="empty-state">
+    <view class="empty-icon">🗂️</view>
+    <view class="empty-text">暂无历史记录</view>
+    <view class="empty-desc">快去和 Axora 聊聊，或试试写作、翻译、总结工具吧</view>
+  </view>
+
+  <view wx:else class="history-list">
+    <view
+      wx:for="{{visibleList}}"
+      wx:key="id"
+      class="history-item"
+      data-id="{{item.id}}"
+      data-type="{{item.type}}"
+      bindtap="onOpenItem"
+    >
+      <view class="item-main">
+        <view class="item-top">
+          <text class="item-tag tag-{{item.type}}">{{item.typeLabel}}</text>
+          <text class="item-time">{{item.timeText}}</text>
+        </view>
+        <view class="item-title">{{item.title}}</view>
+        <view class="item-preview">{{item.preview}}</view>
+      </view>
+      <view
+        class="item-delete"
+        data-id="{{item.id}}"
+        catchtap="onDeleteItem"
+      >删除</view>
+    </view>
+  </view>
+</view>
