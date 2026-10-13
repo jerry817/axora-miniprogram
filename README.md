@@ -50,4 +50,5 @@
 
 ## 隐私说明
 
-当前微信小程序规则下，不能再用 `wx.getUserProfile` 直接读出微信账户原始头像和昵称。项目已改为让用户通过 `chooseAvatar` 和 `type="nickname"` 控件主动选择/填写展示信息；OpenID 则由云函数从调用上下文中可信地取得，前端无法伪造。
+当前微信小程序规则下，不能再用 `wx.getUserProfile` 直接读出微信账户原始头像和昵称。
+项目已改为让用户通过 `chooseAvatar` 和 `type="nickname"` 控件主动选择/填写展示信息；OpenID 则由云函数从调用上下文中可信地取得，前端无法伪造。
